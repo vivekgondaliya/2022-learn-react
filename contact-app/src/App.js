@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Container } from 'semantic-ui-react';
+import { v4 as uuidv4 } from 'uuid';
 
 import AddContact from "./components/AddContact";
 import HeaderComponent from "./components/Header";
@@ -23,7 +24,7 @@ function App() {
 	const [contacts, setContacts] = useState([]);
 	
 	const addContactHandler = (contact) => {
-		setContacts([...contacts, contact]);
+		setContacts([...contacts, {id: uuidv4(), ...contact}]);
 	}
 
 	useEffect(() => {

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Container } from 'semantic-ui-react';
 
-import AddComponent from "./components/AddComponent";
+import AddContact from "./components/AddContact";
 import HeaderComponent from "./components/Header";
 import ContactList from "./components/ContactList";
 
@@ -21,13 +21,17 @@ function App() {
   // ];
 
 	const [contacts, setContacts] = useState([]);
+	
+	const addContactHandler = (contact) => {
+		setContacts([...contacts, contact]);
+	}
 
   return (
     <>
       <HeaderComponent />
       <Container>
-        <AddComponent />
-        <ContactList contacts={contacts}/>
+        <AddContact addContactHandler={addContactHandler} />
+        <ContactList contacts={contacts} />
       </Container>
     </>
   );

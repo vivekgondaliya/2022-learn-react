@@ -1,14 +1,15 @@
 import React from 'react'
-import { List, Button, Icon } from 'semantic-ui-react'
+import { List, Button} from 'semantic-ui-react'
 
 const ContactItem = (props) => {
-    const {name, email} = props.contact;
+    const {id, name, email} = props.contact;
     return (
 			<List.Item>
 				<List.Content floated='right'>
-					<Button icon>
-						<Icon name="delete" />
-					</Button>
+					<Button 
+						icon="delete" 
+						onClick={() => props.removeItem(id)}
+					/>
 				</List.Content>
 
 				<List.Icon name='user' size='large' verticalAlign='middle' />

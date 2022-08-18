@@ -8,23 +8,18 @@ import ContactList from "./components/ContactList";
 
 
 function App() {
-  // const contacts = [
-  //   {
-  //     id: 1,
-  //     name : "Chanakya",
-  //     email : "chankaya@gmail.com"
-  //   },
-	// 	{
-  //     id: 2,
-  //     name : "Chandragupta",
-  //     email : "chandragupta@gmail.com"
-  //   }
-  // ];
 	const LOCAL_STORAGE_KEY="contacts";
 	const [contacts, setContacts] = useState([]);
 	
 	const addContactHandler = (contact) => {
 		setContacts([...contacts, {id: uuidv4(), ...contact}]);
+	}
+
+	const removeContactHandler = (id) => {
+		const newContactList = contacts.filter((contact) => {
+			return contact.id !== id;
+		});
+		setContacts(newContactList);
 	}
 
 	useEffect(() => {
@@ -43,7 +38,7 @@ function App() {
       <HeaderComponent />
       <Container>
         <AddContact addContactHandler={addContactHandler} />
-        <ContactList contacts={contacts} />
+        <ContactList contacts={contacts} removeContact={removeContactHandler}/>
       </Container>
     </>
   );

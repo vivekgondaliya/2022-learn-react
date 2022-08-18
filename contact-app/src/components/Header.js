@@ -7,8 +7,8 @@ const HeaderComponent = () => (
 			<Menu.Item/>
 
 			<Menu.Item>
-				<Header as='h1' style={{"margin" : "15px 0px"}}>
-					<Header.Content>Contacts</Header.Content>
+				<Header as='h1' inverted color='blue' style={{"margin" : "15px 0px"}}>
+					Contact Manager
 				</Header>
 			</Menu.Item>
 

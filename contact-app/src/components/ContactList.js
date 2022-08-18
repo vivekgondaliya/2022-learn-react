@@ -8,12 +8,19 @@ const ContactList = (props) => {
 		props.removeContact(id);
 	}
 
-	const renderContactListItems = props.contacts.map((item) => {
+	const contacts = [
+		{
+			id:1,
+			name:'Vivek',
+			email:'v@gmail.com'
+		}
+	] 
+	const renderContactListItems = contacts.map((item) => {
 		return <ContactItem key={item.id} contact={item} removeItem={removeContactItem}/>
 	});
 
   return (
-		<List celled style={{"marginTop" : "25px"}}>
+		<List divided style={{"marginTop" : "25px"}}>
 			{renderContactListItems}
  	 	</List>
 	) 

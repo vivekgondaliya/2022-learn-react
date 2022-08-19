@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, List, Container, Header, Grid } from 'semantic-ui-react'
+import { Button, List, Container, Header, Grid, Message } from 'semantic-ui-react'
 import {Link} from 'react-router-dom';
 
 import ContactItem from './ContactItem';
@@ -9,9 +9,17 @@ const ContactList = (props) => {
 		props.removeContact(id);
 	}
 
-	const renderContactListItems = props.contacts.map((item) => {
+	const renderContactListItems = props.contacts.length ? props.contacts.map((item) => {
 		return <ContactItem key={item.id} contact={item} removeItem={removeContactItem}/>
-	});
+	}) :
+	(
+		<Message info>
+			<Message.Header>
+				Contact list is empty.
+			</Message.Header>
+  		</Message>
+	)
+	;
 
   return (
 		<Container>

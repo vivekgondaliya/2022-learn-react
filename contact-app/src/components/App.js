@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import AddContact from "./AddContact";
 import ContactList from "./ContactList";
 import ContactDetail from "./ContactDetail";
+import ConfirmDelete from "./ConfirmDelete";
 
 function App() {
 	const LOCAL_STORAGE_KEY="contacts";
@@ -60,6 +61,15 @@ function App() {
 				render={(props) => (
 					<ContactDetail
 						{...props}
+					/>
+				)} 
+			/>
+			<Route 
+				path="/delete/:id" 
+				render={(props) => (
+					<ConfirmDelete
+						{...props}
+						removeContact={removeContactHandler}
 					/>
 				)} 
 			/>

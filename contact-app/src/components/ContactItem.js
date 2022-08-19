@@ -7,15 +7,17 @@ const ContactItem = (props) => {
     return (
 			<List.Item>
 				<List.Content floated='right'>
-					<Button 
-						icon="delete" 
-						onClick={() => props.removeItem(id)}
-					/>
+					<Link to={ {pathname:`/delete/${id}`, state:{contact: props.contact}} }>
+						<Button 
+							icon="delete" 
+							// onClick={() => props.removeItem(id)}
+						/>
+					</Link>
 				</List.Content>
 
 				<List.Icon name='user' size='large' verticalAlign='middle' />
 				<List.Content>
-					<Link to={`/contact/${id}`}>
+					<Link to={ {pathname:`/contact/${id}`, state:{contact: props.contact}} }>
 						<List.Header>{name}</List.Header>
 						<List.Description>{email}</List.Description>
 					</Link>

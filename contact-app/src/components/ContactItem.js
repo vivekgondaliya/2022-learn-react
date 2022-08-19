@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import { List, Button} from 'semantic-ui-react'
 
 const ContactItem = (props) => {
@@ -14,8 +15,10 @@ const ContactItem = (props) => {
 
 				<List.Icon name='user' size='large' verticalAlign='middle' />
 				<List.Content>
-					<List.Header as='a'>{name}</List.Header>
-					<List.Description as='a'>{email}</List.Description>
+					<Link to={`/contact/${id}`}>
+						<List.Header>{name}</List.Header>
+						<List.Description>{email}</List.Description>
+					</Link>
 				</List.Content>
     	</List.Item>
     )

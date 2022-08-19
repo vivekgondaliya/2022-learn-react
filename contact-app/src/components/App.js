@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from "react";
-import { Container } from 'semantic-ui-react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import AddContact from "./AddContact";
-import HeaderComponent from "./Header";
 import ContactList from "./ContactList";
-
+import ContactDetail from "./ContactDetail";
 
 function App() {
 	const LOCAL_STORAGE_KEY="contacts";
@@ -57,6 +55,14 @@ function App() {
 					/>
 				)} 
 			/>	
+			<Route 
+				path="/contact/:id" 
+				render={(props) => (
+					<ContactDetail
+						{...props}
+					/>
+				)} 
+			/>
 		</Switch>
 	</Router>
   );

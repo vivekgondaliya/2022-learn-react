@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { List, Button} from 'semantic-ui-react'
+import { List, Icon} from 'semantic-ui-react'
 
 const ContactItem = (props) => {
     const {id, name, email} = props.contact;
@@ -8,10 +8,7 @@ const ContactItem = (props) => {
 			<List.Item>
 				<List.Content floated='right'>
 					<Link to={ {pathname:`/delete/${id}`, state:{contact: props.contact}} }>
-						<Button 
-							icon="delete" 
-							// onClick={() => props.removeItem(id)}
-						/>
+						<Icon name="delete" color='grey' link/>
 					</Link>
 				</List.Content>
 

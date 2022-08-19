@@ -1,5 +1,6 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import { Button, List, Container, Header, Grid } from 'semantic-ui-react'
+import {Link} from 'react-router-dom';
 
 import ContactItem from './ContactItem';
 
@@ -8,21 +9,42 @@ const ContactList = (props) => {
 		props.removeContact(id);
 	}
 
-	const contacts = [
-		{
-			id:1,
-			name:'Vivek',
-			email:'v@gmail.com'
-		}
-	] 
-	const renderContactListItems = contacts.map((item) => {
+	const contacts =[{
+		id: 1,
+		name: 'Vivek',
+		email: 'v@gmail.com'
+	}]; 
+
+	const renderContactListItems = props.contacts.map((item) => {
 		return <ContactItem key={item.id} contact={item} removeItem={removeContactItem}/>
 	});
 
   return (
-		<List divided style={{"marginTop" : "25px"}}>
-			{renderContactListItems}
- 	 	</List>
+		<Container>
+			<Header as='h2' block style={{"marginTop" : "30px"}}>
+				<Link to='/add'>
+					<Button 
+						color='blue'
+						floated='right'
+					>
+					Add Contact</Button>
+				</Link>
+				Contact List
+			</Header>
+			<Grid>
+				<Grid.Row>
+					<Grid.Column width={3}></Grid.Column>
+					
+					<Grid.Column width={10}>
+						<List divided style={{"marginTop" : "25px"}}>
+							{renderContactListItems}
+						</List>
+					</Grid.Column>
+					
+					<Grid.Column width={3}></Grid.Column>
+				</Grid.Row>
+			</Grid>
+		</Container>
 	) 
 }
 

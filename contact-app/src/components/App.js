@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Container } from 'semantic-ui-react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import AddContact from "./AddContact";
@@ -36,18 +36,28 @@ function App() {
 
   return (
 	<Router>
-		<HeaderComponent />
-		<Container>
-			<Routes>
-					<Route path="/add" element={<AddContact />} />
-					<Route path="/" element={<ContactList />} />
-				{/* <Container></Container> */}
-				{/* <AddContact addContactHandler={addContactHandler} /> */}
-				{/* <ContactList contacts={contacts} removeContact={removeContactHandler}/> */}
-				
-				
-			</Routes>
-		</Container>
+		<Switch>
+			<Route 
+				path="/" 
+				exact
+				render={(props) => (
+					<ContactList 
+						{...props}
+						contacts={contacts} 
+						removeContact={removeContactHandler}
+					/>
+				)}
+			/>
+			<Route 
+				path="/add" 
+				render={(props) => (
+					<AddContact
+						{...props}
+						addContactHandler={addContactHandler}
+					/>
+				)} 
+			/>	
+		</Switch>
 	</Router>
   );
 }

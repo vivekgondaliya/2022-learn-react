@@ -1,0 +1,14 @@
+{
+    "contacts" : [
+        {
+            "id":"979327b2-1cc9-4fdb-9493-74ec63e8703e",
+            "name":"Vivek Gondalia",
+            "email":"vivekgondaliya@gmail.com"
+        },
+        {
+            "id":"75161eb4-87bd-41a6-86e7-301451a7c60f",
+            "name":"Bhimrao Ramji Ambedkar",
+            "email":"br@gmail.com"
+        }
+    ]
+}

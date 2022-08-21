@@ -7,6 +7,7 @@ import AddContact from "./AddContact";
 import ContactList from "./ContactList";
 import ContactDetail from "./ContactDetail";
 import ConfirmDelete from "./ConfirmDelete";
+import EditContact from "./EditContact";
 
 function App() {
 	const LOCAL_STORAGE_KEY="contacts";
@@ -28,17 +29,24 @@ function App() {
 		setContacts([...contacts, response.data]);
 	}
 
-	const removeContactHandler = (id) => {
+	const removeContactHandler = async (id) => {
+		await api.delete(`/contacts/${id}`);
+
 		const newContactList = contacts.filter((contact) => {
 			return contact.id !== id;
 		});
 		setContacts(newContactList);
 	}
 
+	const editContactHandler = async (updatedContact) => {
+		const response = await api.put(`/contacts/${updatedContact.id}`, updatedContact);
+		
+		setContacts(contacts.map(item => {
+			return item.id === response.data.id ? {...response.data} : item;
+		}));
+	}
+
 	useEffect(() => {
-		// const retrieveContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-		// if(retrieveContacts) 
-		// 	setContacts(retrieveContacts);
 		const getAllContacts = async () => {
 			const allContacts = await retrieveContacts();
 			if(allContacts) setContacts(allContacts);
@@ -87,6 +95,15 @@ function App() {
 					<ConfirmDelete
 						{...props}
 						removeContact={removeContactHandler}
+					/>
+				)} 
+			/>
+			<Route 
+				path="/edit/:id" 
+				render={(props) => (
+					<EditContact
+						{...props}
+						editContact={editContactHandler}
 					/>
 				)} 
 			/>

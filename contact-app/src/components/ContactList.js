@@ -1,12 +1,18 @@
-import React from 'react'
-import { Button, List, Container, Header, Grid, Message } from 'semantic-ui-react'
+import React, {useRef} from 'react'
+import { Button, List, Container, Header, Grid, Message, Input } from 'semantic-ui-react'
 import {Link} from 'react-router-dom';
 
 import ContactItem from './ContactItem';
 
 const ContactList = (props) => {
+	const inputEl = useRef("");
+	
 	const removeContactItem = (id) => {
 		props.removeContact(id);
+	}
+
+	const getSearchTerm = () => {
+
 	}
 
 	const renderContactListItems = props.contacts.length ? props.contacts.map((item) => {
@@ -34,6 +40,24 @@ const ContactList = (props) => {
 				Contact List
 			</Header>
 			<Grid>
+				<Grid.Row>
+					<Grid.Column width={3}></Grid.Column>
+
+					<Grid.Column width={10}>
+						<Input
+							ref={inputEl}
+							value={props.term}
+							onChange={getSearchTerm} 
+							action={{ icon: 'search' }}
+							placeholder="Search..." 
+							fluid 
+							style={{"marginTop" : "15px"}} 
+						/>
+					</Grid.Column>
+					
+					<Grid.Column width={3}></Grid.Column>
+				</Grid.Row>
+
 				<Grid.Row>
 					<Grid.Column width={3}></Grid.Column>
 					

@@ -12,8 +12,8 @@ import EditContact from "./EditContact";
 function App() {
 	const LOCAL_STORAGE_KEY="contacts";
 	const [contacts, setContacts] = useState([]);
-	
-	//retrieve contacts
+	const [searchTerm, setSearchTerm] = useState("");
+
 	const retrieveContacts = async () => {
 		const response = await api.get("/contacts");
 		return response.data;
@@ -46,6 +46,10 @@ function App() {
 		}));
 	}
 
+	const searchHandler = (searchTerm) => {
+		setSearchTerm(searchTerm);
+	}
+
 	useEffect(() => {
 		const getAllContacts = async () => {
 			const allContacts = await retrieveContacts();
@@ -69,6 +73,8 @@ function App() {
 						{...props}
 						contacts={contacts} 
 						removeContact={removeContactHandler}
+						term={searchTerm}
+						searchHandler={searchHandler}
 					/>
 				)}
 			/>
